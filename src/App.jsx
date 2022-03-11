@@ -30,6 +30,7 @@ const Heading = styled.h2`
 `;
 
 const Input = styled.input`
+  padding-left: 20px;
   margin-top: 40px;
   width: 500px;
   height: 40px;
@@ -120,14 +121,11 @@ function App() {
   //actions with todos:
 
   const handleDeleteItem = (item) => {
-    //     const taskDeleted = item;
-    //
-    //     let updatedItems = items.filter((item) => {
-    //       return item !== taskDeleted;
-    //     });
-    //
-    //     setItems(updatedItems);
-
+    const taskDeleted = item;
+    let updatedItems = items.filter((item) => {
+      return item !== taskDeleted;
+    });
+    setItems(updatedItems);
     console.log("delete item");
   };
 
