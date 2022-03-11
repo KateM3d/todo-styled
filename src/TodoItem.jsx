@@ -21,7 +21,7 @@ export default function TodoItem({
 }) {
   return (
     <List key={index} onClick={onItemCompleted}>
-      <p key={item} onClick={onDeleteItem}>
+      <p key={item}>
         {item}
 
         <Icon
