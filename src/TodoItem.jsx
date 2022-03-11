@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 const List = styled.li`
   margin: 20px;
+
   p {
-    color: white;
+    color: red;
     font-size: 20px;
   }
 `;

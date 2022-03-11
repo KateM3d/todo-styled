@@ -58,7 +58,8 @@ const ContainerTodos = styled.div`
   width: 650px;
   margin: auto;
   text-align: left;
-  color: #4d77ff;
+  color: white;
+  font-size: 20px;
 `;
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
   const [items, setItems] = useState([]); //todo array
   const [status, setStatus] = useState(false); //status of each task
   const [disabled, setDisabled] = useState(true); //button
+  const [filtered, setFiltered] = useState(items);
 
   // Run once when app starts to get todos in local storage
   useEffect(() => {
@@ -74,12 +76,17 @@ function App() {
     } else {
       let todosLocal = JSON.parse(localStorage.getItem("items"));
       setItems(todosLocal);
+      setFiltered(todosLocal);
     }
   }, []);
 
   // Save local todos when todos state changes
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
+    localStorage.setItem("items", JSON.stringify(filtered));
+  }, [items, filtered]);
+
+  useEffect(() => {
+    setFiltered(items);
   }, [items]);
 
   const handleTextChange = (e) => {
@@ -99,24 +106,25 @@ function App() {
       setText("");
       setDisabled(true);
     }
+    console.log(filtered);
   };
 
   //filter btns:
 
-  const handleShowAll = () => {
-    setItems([...items]);
-    console.log("show all");
-  };
-
-  const handleShowActive = () => {
-    console.log("show active");
-  };
-
-  const handleShowCompleted = () => {
-    console.log("show completed");
+  const todoFilter = (currentStatus) => {
+    if (currentStatus === "all") {
+      setFiltered(items);
+    } else {
+      let filteredTodo = [...items].filter(
+        (item) => item.status === currentStatus
+      );
+      setFiltered(filteredTodo);
+    }
   };
 
   const handleRemoveAllCompleted = () => {
+    let completedItems = items.filter((item) => item.status !== true);
+    setItems(completedItems);
     console.log("remove all completed");
   };
 
@@ -145,7 +153,7 @@ function App() {
     });
     setItems(updatedItems);
   };
-  console.log(items);
+  console.log(filtered);
 
   return (
     <AppWrapper>
@@ -160,9 +168,9 @@ function App() {
           disabled={disabled}
         />
         <ContainerBtn>
-          <Btn buttonClick={handleShowAll} buttonInner="All" />
-          <Btn buttonClick={handleShowActive} buttonInner="Active" />
-          <Btn buttonClick={handleShowCompleted} buttonInner="Completed" />
+          <Btn buttonClick={() => todoFilter("all")} buttonInner="All" />
+          <Btn buttonClick={() => todoFilter(false)} buttonInner="Active" />
+          <Btn buttonClick={() => todoFilter(true)} buttonInner="Completed" />
           <Btn
             buttonClick={handleRemoveAllCompleted}
             buttonInner="Remove All Completed"
@@ -174,6 +182,8 @@ function App() {
             items={items}
             onItemCompleted={markItemCompleted}
             onDeleteItem={handleDeleteItem}
+            filtered={filtered}
+            setFiltered={setFiltered}
           />
         </ContainerTodos>
       </ContainerList>
