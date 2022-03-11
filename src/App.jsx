@@ -100,7 +100,7 @@ function App() {
       setDisabled(true);
     }
   };
-  console.log(items);
+
   //filter btns:
 
   const handleShowAll = () => {
@@ -136,9 +136,16 @@ function App() {
     console.log("delete item");
   };
 
-  const markItemCompleted = () => {
-    console.log("mark completed item");
+  const markItemCompleted = (item) => {
+    let updatedItems = items.map((el) => {
+      if (el.id === item.id) {
+        return { ...el, status: !el.status };
+      }
+      return el;
+    });
+    setItems(updatedItems);
   };
+  console.log(items);
 
   return (
     <AppWrapper>

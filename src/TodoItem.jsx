@@ -5,8 +5,6 @@ const List = styled.li`
   p {
     color: white;
     font-size: 20px;
-    text-decoration: ${(completed) => completed === true && "line-through"};
-    text-decoration-color: red;
   }
 `;
 
@@ -22,16 +20,15 @@ export default function TodoItem({
 }) {
   return (
     <List key={index}>
-      <p key={item.title} onClick={onItemCompleted}>
+      <span key={item.title} onClick={() => onItemCompleted(item)}>
         {item.title}
-
-        <Icon
-          onClick={() => onDeleteItem(item)}
-          src="https://img.icons8.com/color/48/000000/delete-forever.png"
-          alt="delete"
-          width="20px"
-        />
-      </p>
+      </span>
+      <Icon
+        onClick={() => onDeleteItem(item)}
+        src="https://img.icons8.com/color/48/000000/delete-forever.png"
+        alt="delete"
+        width="20px"
+      />
     </List>
   );
 }
