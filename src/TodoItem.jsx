@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { withTheme } from "styled-components";
 
 const List = styled.li`
   margin: 20px;
-
   p {
     color: white;
     font-size: 20px;
@@ -21,12 +19,11 @@ export default function TodoItem({
   item,
   onDeleteItem,
   onItemCompleted,
-  completed,
 }) {
   return (
-    <List key={index} onClick={onItemCompleted}>
-      <p key={item} completed={completed}>
-        {item}
+    <List key={index}>
+      <p key={item.title} onClick={onItemCompleted}>
+        {item.title}
 
         <Icon
           onClick={() => onDeleteItem(item)}
