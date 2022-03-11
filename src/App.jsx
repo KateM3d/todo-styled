@@ -64,7 +64,7 @@ const ContainerTodos = styled.div`
 function App() {
   const [text, setText] = useState(""); //input
   const [items, setItems] = useState([]); //todo array
-  // const [completed, setCompleted] = useState(false); //status of each task
+  const [completed, setCompleted] = useState(false); //status of each task
   const [disabled, setDisabled] = useState(true); //button
 
   // Run once when app starts to get todos in local storage
@@ -129,7 +129,21 @@ function App() {
     console.log("delete item");
   };
 
-  const markItemCompleted = () => {
+  const markItemCompleted = (item) => {
+    const taskCompleted = item;
+    // let incompletedItems = items.filter((item) => {
+    //   if (item !== taskCompleted) {
+    //     item.classList.toggle("completed");
+    //   }
+    // });
+    // setItems(incompletedItems);
+    items.forEach((item) => {
+      if (item === taskCompleted) {
+        setCompleted(!completed);
+      }
+    });
+
+    console.log(completed);
     console.log("mark completed item");
   };
 

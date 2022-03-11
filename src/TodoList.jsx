@@ -5,7 +5,12 @@ const Todos = styled.ul`
   width: 400px;
 `;
 
-export default function TodoList({ items, onItemCompleted, onDeleteItem }) {
+export default function TodoList({
+  items,
+  completed,
+  onItemCompleted,
+  onDeleteItem,
+}) {
   return (
     <>
       <Todos>
@@ -13,7 +18,7 @@ export default function TodoList({ items, onItemCompleted, onDeleteItem }) {
           <TodoItem
             key={index}
             item={item}
-            //   completed={item.done}
+            completed={completed}
             onItemCompleted={onItemCompleted}
             onDeleteItem={onDeleteItem}
           />

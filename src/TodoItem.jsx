@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { withTheme } from "styled-components";
 
 const List = styled.li`
   margin: 20px;
@@ -6,6 +7,8 @@ const List = styled.li`
   p {
     color: white;
     font-size: 20px;
+    text-decoration: ${(completed) => completed === true && "line-through"};
+    text-decoration-color: red;
   }
 `;
 
@@ -18,10 +21,11 @@ export default function TodoItem({
   item,
   onDeleteItem,
   onItemCompleted,
+  completed,
 }) {
   return (
     <List key={index} onClick={onItemCompleted}>
-      <p key={item}>
+      <p key={item} completed={completed}>
         {item}
 
         <Icon
