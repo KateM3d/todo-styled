@@ -5,17 +5,17 @@ const Todos = styled.ul`
   width: 400px;
 `;
 
-export default function TodoList(props) {
+export default function TodoList({ items, onItemCompleted, onDeleteItem }) {
   return (
     <>
       <Todos>
-        {props.items.map((item, index) => (
+        {items.map((item, index) => (
           <TodoItem
             key={index}
             item={item}
             //   completed={item.done}
-            onItemCompleted={props.onItemCompleted}
-            onDeleteItem={props.onDeleteItem}
+            onItemCompleted={onItemCompleted}
+            onDeleteItem={onDeleteItem}
           />
         ))}
       </Todos>

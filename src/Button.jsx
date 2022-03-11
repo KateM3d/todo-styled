@@ -8,6 +8,11 @@ const Button = styled.button`
   color: #f2fa5a;
   background-color: #5ee6eb;
   margin: 10px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #4d77ff;
+  }
 `;
 
 export default function Btn({ buttonClick, buttonInner }) {

@@ -4,12 +4,17 @@ import Btn from "./Button";
 import TodoList from "./TodoList";
 
 const AppWrapper = styled.div`
-  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #151d3b;
+  height: 100%;
 `;
 
 const Container = styled.div`
   width: 100%;
-  height: 200px;
+  height: 100px;
   margin: auto;
   text-align: center;
   background-color: #56bbf1;
@@ -20,11 +25,12 @@ const Container = styled.div`
 
 const Heading = styled.h2`
   color: #f2fa5a;
-  padding: 50px;
+  padding: 5px;
   font-size: 40px;
 `;
 
 const Input = styled.input`
+  margin-top: 40px;
   width: 500px;
   height: 40px;
   border-radius: 10px;
@@ -35,8 +41,8 @@ const Input = styled.input`
 const ContainerList = styled.div`
   width: 100%;
   margin: auto;
-  position: absolute;
-  top: 250px;
+  // position: absolute;
+  margin-top: 250px;
   text-align: center;
 `;
 
