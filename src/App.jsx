@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Btn from "./Button";
 import TodoList from "./TodoList";
+import "./App.css";
 
 const AppWrapper = styled.div`
   position: absolute;
